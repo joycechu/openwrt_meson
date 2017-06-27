@@ -39,7 +39,7 @@ tools-$(BUILD_ISL) += isl
 tools-$(CONFIG_USE_SPARSE) += sparse
 tools-$(CONFIG_TARGET_apm821xx)$(CONFIG_TARGET_gemini) += genext2fs
 tools-$(CONFIG_TARGET_tegra) += cbootimage cbootimage-configs
-tools-$(CONFIG_TARGET_mesongx) += meson-tools
+tools-$(CONFIG_TARGET_mesongx) += fiptool meson-tools
 
 # builddir dependencies
 $(curdir)/bison/compile := $(curdir)/flex/compile
