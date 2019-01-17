@@ -15,7 +15,7 @@ DEVICE_TYPE:=other
 FEATURES:=audio boot-part ext4 fpu squashfs usbgadget
 MAINTAINER:=Stijn Tintel <stijn@linux-ipv6.be>
 
-KERNEL_PATCHVER:=4.14
+KERNEL_PATCHVER:=4.19
 
 define Target/Description
 	Build firmware image for Amlogic S9 SoC devices.
