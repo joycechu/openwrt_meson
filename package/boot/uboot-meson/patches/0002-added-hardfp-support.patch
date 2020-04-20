@@ -1,0 +1,13 @@
+Index: git/arch/arm/cpu/aml_meson/config.mk
+===================================================================
+--- git.orig/arch/arm/cpu/aml_meson/config.mk
++++ git/arch/arm/cpu/aml_meson/config.mk
+@@ -1,7 +1,7 @@
+ CROSS_COMPILE ?= arm-none-eabi-
+ ARM_CPU=cortex-a9
+ PF_NO_UNALIGNED := $(call cc-option, -mno-unaligned-access,)
+-PLATFORM_CPPFLAGS += $(call cc-option,-mcpu=cortex-a9  -ffixed-r8 -mno-long-calls  -Wall -fPIC )
++PLATFORM_CPPFLAGS += $(call cc-option,-mcpu=cortex-a9  -ffixed-r8 -mno-long-calls  -Wall -fPIC -mfloat-abi=hard -mfpu=vfpv4 )
+ PLATFORM_CPPFLAGS += $(PF_NO_UNALIGNED)
+ #USE_PRIVATE_LIBGCC=yes
+ TEXT_BASE=$(CONFIG_SYS_TEXT_BASE)
