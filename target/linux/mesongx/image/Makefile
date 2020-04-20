@@ -41,19 +41,22 @@ endef
 
 define Build/uImage-meson
 	$(call Build/uImage,none)
-	mkimage -A arm64 -T script -C none -n "boot.scr uImage" -d boot.$1.txt $(KDIR)/boot.$1.scr
+	mkimage -A arm -T script -C none -n "boot.scr uImage" -d boot.$1.txt $(KDIR)/boot.$1.scr
 endef
 
 ### Devices ###
 define Device/Default
   FILESYSTEMS := ext4 squashfs
   IMAGES := sdcard.img
-  IMAGE/sdcard.img := sdcard-img $$(DEVICE_NAME) | bootloader-$$(DEVICE_NAME)
+  IMAGE/sdcard.img := sdcard-img $$(DEVICE_NAME)
   KERNEL_DEPENDS = $$(wildcard $(DTS_DIR)/$$(DEVICE_DTS).dts)
   KERNEL_LOADADDR := 0x01080000
   KERNEL_NAME := Image
   PROFILES = Default $$(DEVICE_NAME)
 endef
+
+
+ifeq ($(SUBTARGET),S905)
 
 define Device/odroid-c2
   DEVICE_DTS := amlogic/meson-gxbb-odroidc2
@@ -62,5 +65,18 @@ define Device/odroid-c2
   KERNEL := kernel-bin | uImage-meson $$(DEVICE_NAME)
 endef
 TARGET_DEVICES += odroid-c2
+endif
+
+
+ifeq ($(SUBTARGET),m8b)
+
+define Device/meson8b_m201_1G
+  DEVICE_DTS := meson8b-odroidc1
+### DEVICE_PACKAGES += odroid-firmware-c2 u-boot-odroid-c2
+  DEVICE_TITLE := meson8b_m201_1G
+  KERNEL := kernel-bin | uImage-meson $$(DEVICE_NAME)
+endef
+TARGET_DEVICES += meson8b_m201_1G
+endif
 
 $(eval $(call BuildImage))

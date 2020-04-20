@@ -7,12 +7,13 @@
 
 include $(TOPDIR)/rules.mk
 
-ARCH:=aarch64
+# ARCH:=aarch64
 BOARD:=mesongx
-BOARDNAME:=Amlogic S9 family
-CPU_TYPE:=cortex-a53
+BOARDNAME:=Amlogic
+# CPU_TYPE:=cortex-a53
 DEVICE_TYPE:=other
 FEATURES:=audio boot-part ext4 fpu squashfs usbgadget
+SUBTARGETS=m3 m6 m8 m8b m8m2 S905
 MAINTAINER:=Stijn Tintel <stijn@linux-ipv6.be>
 
 KERNEL_PATCHVER:=4.19
